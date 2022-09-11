@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  pullPolicy: IfNotPresent
+  repository: mongo
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
@@ -38,7 +38,7 @@ securityContext: {}
 
 service:
   type: NodePort
-  port: 8080
+  port: 27017
 
 ingress:
   enabled: false
@@ -70,8 +70,8 @@ resources: {}
 
 autoscaling:
   enabled: on
-  minReplicas: 20
-  maxReplicas: 1000
+  minReplicas: 2
+  maxReplicas: 10
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
