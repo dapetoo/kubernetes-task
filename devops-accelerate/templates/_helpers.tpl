@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "task.name" -}}
+{{- define "devops-accelerate.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "task.fullname" -}}
+{{- define "devops-accelerate.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "task.chart" -}}
+{{- define "devops-accelerate.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "task.labels" -}}
-helm.sh/chart: {{ include "task.chart" . }}
-{{ include "task.selectorLabels" . }}
+{{- define "devops-accelerate.labels" -}}
+helm.sh/chart: {{ include "devops-accelerate.chart" . }}
+{{ include "devops-accelerate.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "task.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "task.name" . }}
+{{- define "devops-accelerate.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "devops-accelerate.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "task.serviceAccountName" -}}
+{{- define "devops-accelerate.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "task.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "devops-accelerate.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
