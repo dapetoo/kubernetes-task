@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "devops-accelerate.fullname" . }}
-  namespace: {{ .Values.namespace }}
   labels:
     {{- include "devops-accelerate.labels" . | nindent 4 }}
 spec:
